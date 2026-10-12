@@ -10,11 +10,61 @@
   --accent-2: #7ceaff;
   --good: #4ade80;
   --warn: #fbbf24;
+  --card-top: #202838;
+  --card-bottom: #171d2a;
+  --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --card-shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --media-bg: #121724;
+  --media-icon: #6b7690;
+  --header-bg: rgba(13, 15, 20, 0.72);
+  --code-bg: rgba(255, 255, 255, 0.06);
+  --btn-hover: #232b3d;
+  --tag-bg: rgba(255, 255, 255, 0.05);
+  --sk-a: #1a2030;
+  --sk-b: #232b3d;
+  --backdrop: rgba(4, 6, 10, 0.7);
+  --close-bg: rgba(0, 0, 0, 0.45);
+  --close-bg-hover: rgba(0, 0, 0, 0.7);
+  --glow-1: rgba(169, 123, 255, 0.14);
+  --glow-2: rgba(110, 231, 255, 0.08);
   --radius: 14px;
   --radius-sm: 9px;
   --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   --maxw: 1120px;
   color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  --bg: #f2f4f9;
+  --bg-elev: #ffffff;
+  --bg-elev-2: #eaeef6;
+  --border: #d6dcea;
+  --border-strong: #b6c0d4;
+  --text: #1b2233;
+  --muted: #58607a;
+  --accent: #6d28d9;
+  --accent-2: #0e7490;
+  --good: #15803d;
+  --warn: #b45309;
+  --card-top: #ffffff;
+  --card-bottom: #f6f8fc;
+  --card-shadow: 0 4px 14px rgba(24, 32, 52, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --card-shadow-hover: 0 12px 30px rgba(24, 32, 52, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --media-bg: #e8edf6;
+  --media-icon: #98a2b8;
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --code-bg: rgba(20, 30, 50, 0.07);
+  --btn-hover: #e6ebf4;
+  --tag-bg: rgba(20, 30, 50, 0.05);
+  --sk-a: #e5e9f2;
+  --sk-b: #f1f4fa;
+  --backdrop: rgba(20, 28, 46, 0.45);
+  --close-bg: rgba(255, 255, 255, 0.85);
+  --close-bg-hover: #ffffff;
+  --glow-1: rgba(109, 40, 217, 0.1);
+  --glow-2: rgba(14, 116, 144, 0.08);
+  --shadow: 0 12px 32px rgba(24, 32, 52, 0.16);
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -23,8 +73,8 @@ html, body { margin: 0; padding: 0; }
 
 body {
   background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(169, 123, 255, 0.14), transparent 60%),
-    radial-gradient(900px 500px at 0% 0%, rgba(110, 231, 255, 0.08), transparent 55%),
+    radial-gradient(1200px 600px at 80% -10%, var(--glow-1), transparent 60%),
+    radial-gradient(900px 500px at 0% 0%, var(--glow-2), transparent 55%),
     var(--bg);
   color: var(--text);
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -39,7 +89,7 @@ a:hover { text-decoration: underline; }
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.85em;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--code-bg);
   padding: 0.12em 0.4em;
   border-radius: 6px;
 }
@@ -54,7 +104,7 @@ code {
   top: 0;
   z-index: 20;
   backdrop-filter: blur(12px);
-  background: rgba(13, 15, 20, 0.72);
+  background: var(--header-bg);
   border-bottom: 1px solid var(--border);
 }
 .header-inner { display: flex; align-items: center; justify-content: space-between; height: 62px; }
@@ -81,8 +131,9 @@ code {
   background: var(--bg-elev-2);
   transition: background 0.15s, border-color 0.15s, transform 0.05s;
 }
-.btn:hover { background: #232b3d; border-color: #3f4b63; }
+.btn:hover { background: var(--btn-hover); border-color: var(--border-strong); }
 .btn:active { transform: translateY(1px); }
+.icon-btn { padding: 8px 10px; line-height: 1; font-size: 1.05rem; }
 
 .input {
   font: inherit;
@@ -119,28 +170,29 @@ code {
 .card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #202838, #171d2a);
+  background: linear-gradient(180deg, var(--card-top), var(--card-bottom));
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  box-shadow: var(--card-shadow);
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   animation: rise 0.35s ease both;
 }
-.card:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
+.card:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: var(--card-shadow-hover); }
 .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-.card-media { position: relative; aspect-ratio: 4 / 3; background: #121724; overflow: hidden; border-bottom: 1px solid var(--border); }
+.card-media { position: relative; aspect-ratio: 4 / 3; background: var(--media-bg); overflow: hidden; border-bottom: 1px solid var(--border); }
 .card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.card-media .noimg { display: grid; place-items: center; height: 100%; color: #6b7690; font-size: 2rem; }
+.card-media .noimg { display: grid; place-items: center; height: 100%; color: var(--media-icon); font-size: 2rem; }
 
 .badge {
   position: absolute; top: 10px; left: 10px;
   font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
   padding: 4px 9px; border-radius: 999px;
   background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #f4f6fb;
   backdrop-filter: blur(4px);
 }
 .badge.sold { background: rgba(248, 113, 113, 0.9); border-color: transparent; color: #1b0505; }
@@ -154,7 +206,7 @@ code {
 .location { color: var(--muted); font-size: 0.8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { font-size: 0.72rem; color: var(--muted); background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); padding: 2px 8px; border-radius: 999px; }
+.tag { font-size: 0.72rem; color: var(--muted); background: var(--tag-bg); border: 1px solid var(--border); padding: 2px 8px; border-radius: 999px; }
 
 /* Empty */
 .empty { text-align: center; padding: 60px 20px 80px; }
@@ -165,12 +217,12 @@ code {
 .skeleton { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--bg-elev); }
 .skeleton .sk-media { aspect-ratio: 4 / 3; }
 .skeleton .sk-line { height: 12px; border-radius: 6px; margin: 12px 14px; }
-.sk-shimmer { background: linear-gradient(90deg, #1a2030 25%, #232b3d 37%, #1a2030 63%); background-size: 400% 100%; animation: shimmer 1.4s ease infinite; }
+.sk-shimmer { background: linear-gradient(90deg, var(--sk-a) 25%, var(--sk-b) 37%, var(--sk-a) 63%); background-size: 400% 100%; animation: shimmer 1.4s ease infinite; }
 @keyframes shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
 
 /* Modal */
 .modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; }
-.modal-backdrop { position: absolute; inset: 0; background: rgba(4, 6, 10, 0.7); backdrop-filter: blur(3px); }
+.modal-backdrop { position: absolute; inset: 0; background: var(--backdrop); backdrop-filter: blur(3px); }
 .modal-card {
   position: relative;
   width: min(760px, 100%);
@@ -182,10 +234,10 @@ code {
   box-shadow: var(--shadow);
   animation: rise 0.2s ease both;
 }
-.modal-close { position: absolute; top: 10px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border-strong); background: rgba(0, 0, 0, 0.45); color: var(--text); font-size: 1.2rem; line-height: 1; cursor: pointer; }
-.modal-close:hover { background: rgba(0, 0, 0, 0.7); }
+.modal-close { position: absolute; top: 10px; right: 12px; z-index: 2; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border-strong); background: var(--close-bg); color: var(--text); font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.modal-close:hover { background: var(--close-bg-hover); }
 
-.m-hero { width: 100%; max-height: 340px; object-fit: cover; display: block; background: #0a0c11; }
+.m-hero { width: 100%; max-height: 340px; object-fit: cover; display: block; background: var(--media-bg); }
 .m-body { padding: 20px 22px 26px; }
 .m-title { margin: 0 0 6px; font-size: 1.45rem; }
 .m-meta { display: flex; flex-wrap: wrap; gap: 10px 16px; color: var(--muted); font-size: 0.86rem; margin-bottom: 14px; }

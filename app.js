@@ -631,4 +631,36 @@ function bindUI() {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 }
 
+/* --------------------------------- Theme --------------------------------- */
+
+function applyTheme(theme) {
+  const next = theme === "light" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try { localStorage.setItem("theme", next); } catch (_) { /* ignore */ }
+  syncThemeButton();
+}
+
+function syncThemeButton() {
+  const btn = $("#theme-btn");
+  if (!btn) return;
+  const isLight = document.documentElement.getAttribute("data-theme") === "light";
+  const icon = btn.querySelector(".theme-icon");
+  if (icon) icon.textContent = isLight ? "☀️" : "🌙";
+  const label = isLight ? "Switch to dark mode" : "Switch to light mode";
+  btn.setAttribute("aria-label", label);
+  btn.setAttribute("title", label);
+}
+
+function initTheme() {
+  const btn = $("#theme-btn");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      applyTheme(current === "light" ? "dark" : "light");
+    });
+  }
+  syncThemeButton();
+}
+
 document.addEventListener("DOMContentLoaded", boot);
+document.addEventListener("DOMContentLoaded", initTheme);
