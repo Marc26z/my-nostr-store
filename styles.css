@@ -1,18 +1,18 @@
 :root {
   --bg: #0d0f14;
-  --bg-elev: #141822;
-  --bg-elev-2: #1b2130;
-  --border: #262d3d;
-  --border-strong: #333c50;
-  --text: #e8ecf4;
-  --muted: #8b94a8;
-  --accent: #a97bff;
-  --accent-2: #6ee7ff;
+  --bg-elev: #1a2130;
+  --bg-elev-2: #232c40;
+  --border: #354158;
+  --border-strong: #4a5670;
+  --text: #eef1f8;
+  --muted: #a3adc4;
+  --accent: #b28dff;
+  --accent-2: #7ceaff;
   --good: #4ade80;
   --warn: #fbbf24;
   --radius: 14px;
   --radius-sm: 9px;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
   --maxw: 1120px;
   color-scheme: dark;
 }
@@ -119,21 +119,22 @@ code {
 .card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, var(--bg-elev), #10141c);
+  background: linear-gradient(180deg, #202838, #171d2a);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
   cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   animation: rise 0.35s ease both;
 }
-.card:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: var(--shadow); }
+.card:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
 .card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-.card-media { position: relative; aspect-ratio: 4 / 3; background: #0a0c11; overflow: hidden; }
+.card-media { position: relative; aspect-ratio: 4 / 3; background: #121724; overflow: hidden; border-bottom: 1px solid var(--border); }
 .card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.card-media .noimg { display: grid; place-items: center; height: 100%; color: #3a4356; font-size: 2rem; }
+.card-media .noimg { display: grid; place-items: center; height: 100%; color: #6b7690; font-size: 2rem; }
 
 .badge {
   position: absolute; top: 10px; left: 10px;
