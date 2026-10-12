@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classifieds</title>
+  <meta name="description" content="Classified listings published over Nostr (NIP-99)." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#" aria-label="Home">
+        <span class="brand-mark">◆</span>
+        <span class="brand-text">Classifieds</span>
+      </a>
+      <div class="header-actions">
+        <span id="conn-status" class="conn" data-state="connecting" title="Relay connection">
+          <span class="dot"></span><span id="conn-text">Connecting…</span>
+        </span>
+        <button id="refresh-btn" class="btn btn-ghost" type="button">Refresh</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Items for sale</h1>
+      <p class="muted">
+        Live listings from
+        <a id="author-link" href="#" target="_blank" rel="noopener noreferrer"><code id="author-npub">…</code></a>
+        published over <abbr title="Nostr Implementation Possibilities 99 – Classified Listings">NIP-99</abbr>.
+      </p>
+
+      <div class="toolbar">
+        <input id="search" class="input" type="search" placeholder="Search title, summary, tags…" autocomplete="off" />
+        <select id="tag-filter" class="input select" aria-label="Filter by tag">
+          <option value="">All categories</option>
+        </select>
+        <label class="toggle">
+          <input id="show-sold" type="checkbox" />
+          <span>Show sold</span>
+        </label>
+      </div>
+      <p id="result-count" class="muted small"></p>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite" aria-busy="true"></section>
+
+    <section id="empty" class="empty" hidden>
+      <p class="empty-icon">🗒️</p>
+      <h2 id="empty-title">No listings found</h2>
+      <p id="empty-body" class="muted"></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p class="muted small">
+        Data fetched directly from public Nostr relays in your browser. No server, no tracking.
+      </p>
+    </div>
+  </footer>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <article class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" data-close aria-label="Close">×</button>
+      <div id="modal-body"></div>
+    </article>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
