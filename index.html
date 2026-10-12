@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Classifieds</title>
   <meta name="description" content="Classified listings published over Nostr (NIP-99)." />
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme");
+        document.documentElement.setAttribute("data-theme", stored === "light" ? "light" : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -19,6 +29,9 @@
           <span class="dot"></span><span id="conn-text">Connecting…</span>
         </span>
         <button id="refresh-btn" class="btn btn-ghost" type="button">Refresh</button>
+        <button id="theme-btn" class="btn btn-ghost icon-btn" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+        </button>
       </div>
     </div>
   </header>
